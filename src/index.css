@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+.submit-btn{
+    @apply  w-full py-2 px-2 mt-8 self-center rounded-full bg-violet-950 text-orange-50
+}
+
+.save-btn{
+  @apply  py-2 px-4 text-xs mt-8 self-center rounded-full bg-violet-950 text-orange-50
+}
+.submit-btn-secondary{
+    @apply w-auto justify-center py-2 px-9 mt-4 self-center rounded-full border-orange-400 border  text-orange-400
+}
+.legend{
+    @apply p-6 font-semibold text-xl 
+}
+.form-container{
+    @apply w-[35vw] flex flex-col justify-center items-center self-center col-span-2  h-screen
+}
+
+form{
+   @apply flex justify-center
+}
+
+.side-img {
+  @apply   grid  col-span-1 z-10 relative bg-violet-950 text-orange-50
+
+}
+
+
+.main-cont{
+    @apply grid grid-cols-[35%_65%] h-screen
+}
+
+
+.corner {
+    position: absolute;
+    stroke-linecap: round;
+    width: 40px; 
+    height: 40px; 
+    border: 3px solid #4a3fd6; /* Color and thickness of the stroke */
+  }
+  
+  /* Specific Corner Positions */
+  .top-left {
+    top: 5rem;
+    left: 10%;
+    border-right: none;
+    border-bottom: none;
+  }
+  
+  .top-right {
+    top: 5rem;
+    right: 10%;
+    border-left: none;
+    border-bottom: none;
+  }
+  
+  .bottom-left {
+    bottom: 5rem;
+    left: 10%;
+    border-right: none;
+    border-top: none;
+  }
+  
+  .bottom-right {
+    bottom: 5rem;
+    right: 10%;
+    border-left: none;
+    border-top: none;
+  }
+  
+  
