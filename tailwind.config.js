@@ -10,6 +10,8 @@ export default {
       colors: {
         primary: {
           light: 'rgba(46, 16, 101, 0.3)', 
+          medium: colors.zinc[400], 
+
           dark: colors.violet[950], 
          
         },

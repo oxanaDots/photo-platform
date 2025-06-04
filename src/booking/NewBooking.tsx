@@ -203,9 +203,9 @@ return (
                     onClick={() => field.onChange(opt)}
                     className={[
                       
-                      'text-sm cursor-pointer w-32 py-5 text-ternary-medium rounded text-center',
-                      'bg-ternary-light text-gray-800',
-                      isSelected ? 'border-emerald-600 border-2 bg-white text-black' : '',
+                      'text-sm cursor-pointer w-32 py-5 rounded text-center',
+                      'bg-ternary-light',
+                      isSelected ? 'border-emerald-600 border-2 bg-white text-gray-800 ': 'text-primary-medium ',
                     ].join(' ')}
                   >
                     {opt}
@@ -241,7 +241,7 @@ return (
                       
                       'text-sm cursor-pointer w-32 py-5 text-ternary-medium rounded text-center',
                       'bg-ternary-light text-gray-800',
-                      isSelected ? 'border-emerald-600 border-2 bg-white text-black' : '',
+                      isSelected ? 'border-emerald-600 border-2 bg-white text-black' : 'text-primary-medium ',
                     ].join(' ')}
                   >
                     {opt}
