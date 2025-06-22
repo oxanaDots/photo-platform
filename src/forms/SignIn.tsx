@@ -16,50 +16,14 @@ const [password, setPassword] = useState<string>("")
 const {handleSubmit, register, formState: {errors, isSubmitting}, setError, setValue, getValues} = useForm<SignInFormData>({shouldUseNativeValidation: false, defaultValues: {email, password}})
 const navigate = useNavigate()
 const apiURL = 'http://localhost:5173';
+
+
 const onSubmit: SubmitHandler<SignInFormData> = async (data )=> {
-try {
-  
 
- const response = await axios.post(`${apiURL}/signup`, data)
- console.log('User registered', response.data)
-
-
-} catch (error){
-  if(axios.isAxiosError(error)){
-    const axiosError = error as AxiosError<{error: string}>
-    if(axiosError.response && axiosError.response.status === 409){
-      const errorMessage = axiosError.response.data.error;
-      console.log(axiosError)
-
-      if(errorMessage === 'Email is taken'){
-        setError('root',{
-          type: 'manual',
-         message: errorMessage,
-        })
-
-      } else if(errorMessage === 'Username is already taken'){
-        setError('root',{
-          type: 'manual',
-         message: errorMessage,
-        }) }
-        else if(errorMessage === 'Email and username are taken'){
-        setError('root', {
-        type: 'manual',
-       message: errorMessage
-        })
-        
-      } else{
-        setError('root', {
-          type: 'manual',
-          message: 'Server Error'
-        })
-      }
-
-    }
+  if (data){
+    navigate('/mydashboard')
   }
-}finally{
-
-}}
+}
 
 const onError = ()=>{
   console.log('wrong')

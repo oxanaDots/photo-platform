@@ -10,6 +10,7 @@ import Dashboard from './User/Dashboard'
 import Settings from './User/Settings/MyDetails'
 import MyDetails from './User/Settings/MyDetails'
 import Account from './User/Settings/Account'
+import MyBookings from './booking/MyBookings'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,9 @@ const router = createBrowserRouter([
   },
   { path: '/newbooking',
     element: <NewBooking/>
+  },
+   { path: '/mybookings',
+    element: <MyBookings/>
   },
 
   { path: '/mysettings/mydetails',

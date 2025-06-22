@@ -26,12 +26,11 @@ export default function MyDetails() {
   };
 
   return (
-    <section className='flex w-[100vw] py-10 justify-center px-5
-    '>
-    <div className="flex  py-10 justify-center">
+    <section className='flex py-10 justify-center px-5'>
+    <div className="flex  w-[80%] py-10 ">
 
       <Sidebarmenu />
-      <div className="w-[60vw] justify-left flex border-t border-l border-primary-dark py-12 px-14">
+      <div className=" justify-left w-[100%] flex border-t border-l border-primary-dark py-12 px-14">
       <form  onSubmit={handleSubmit(onSubmit)} method='POST'>
         <div className='items-left'>
             

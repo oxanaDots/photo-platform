@@ -18,7 +18,7 @@ export default {
         secondary: {
           light: colors.orange[50], 
           dark: colors.orange[500], 
-          500: colors.amber[500], 
+          medium: colors.zinc[700], 
         },
         ternary:{
           light: colors.zinc[100], 
