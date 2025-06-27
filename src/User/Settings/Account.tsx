@@ -2,6 +2,7 @@ import React from 'react';
 import Sidebarmenu from '../Sidebarmenu';
 import InputField from '../../components/InputField';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import InnerNav from '../../Navs/InnerNav';
 
 interface AccountInfoInputs{
     currentPassword:string;
@@ -17,7 +18,12 @@ function Account() {
       formState: { errors, isSubmitting },
     } = useForm<AccountInfoInputs>();
   return (
-  <section className='flex py-10 justify-center px-5'>
+   <div className='flex flex-col justify-center'>
+    <section className='flex  py-6 items-center justify-center flex-col px-5'>
+
+      <div className='flex self-end justify-center w-full'>
+         <InnerNav/>
+      </div>
       <div className="flex  w-[80%]  py-10 ">
         <Sidebarmenu/>
          <div className=" justify-left w-[100%] flex border-t border-l border-primary-dark py-12 px-14">
@@ -79,6 +85,7 @@ function Account() {
           </div>
 
         </section>
+          </div>
   );
 }
 

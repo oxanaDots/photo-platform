@@ -105,7 +105,7 @@ return (
     <form className=' flex-col w-[90vw] flex  p-4 justify-center text-center '  onSubmit={handleSubmit(onSubmit)}>
           <legend className="text-xl text-center font-semibold mb-4">Make a Booking</legend>
 
-
+<div className=' w-100 flex justify-between w-full gap-2 '>
       <InputField
         name="firstName"
         placeholder="First Name"
@@ -121,7 +121,7 @@ return (
         validationRules={{ required: 'Last name is required' }}
         error={errors.lastName}
       />
-
+</div>
       <InputField
         name="email"
         type="email"
@@ -160,7 +160,7 @@ return (
         error={errors.postcode}
       />
 
-       
+       <div className=' w-100 flex justify-between w-full gap-2 '>
         <InputField
           name="date"
           type="date"
@@ -183,6 +183,7 @@ return (
            }}
           error={errors.time}
         />
+        </div>
     
 
       <div className="  flex flex-col text-left justify-left items-left mb-4 ">

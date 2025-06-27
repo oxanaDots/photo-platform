@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useFormContext, FormData } from '../../forms/FormContent';
 import Sidebarmenu from '../Sidebarmenu';
 import InputField from '../../components/InputField';
-import axios from 'axios';
+import InnerNav from '../../Navs/InnerNav';
 
 export default function MyDetails() {
   const { formData, setFormData } = useFormContext();
@@ -18,15 +18,16 @@ export default function MyDetails() {
   });
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    // save their edits back into context
-    setFormData(data);
-    // and optionally persist to your API
-    await axios.put('/api/user/settings', data);
-    alert('Settings saved!');
+
   };
 
   return (
-    <section className='flex py-10 justify-center px-5'>
+ <div className='flex flex-col justify-center'>
+    <section className='flex  py-6 items-center justify-center flex-col px-5'>
+
+      <div className='flex self-end justify-center w-full'>
+         <InnerNav/>
+      </div>
     <div className="flex  w-[80%] py-10 ">
 
       <Sidebarmenu />
@@ -127,5 +128,6 @@ export default function MyDetails() {
       </div>
     </div>
     </section>
+      </div>
   );
 }

@@ -25,10 +25,10 @@ const steps= [
 const Home = () => {
   return (
     <div >
-    <section>
+    <section className='h-full'>
         <OutterNav/>
-    </section>
-    <section className='corner-shadow relative border border-transparent py-4 px-10 flex h-full flex-col items-center justify-center'>
+   
+    <section className='corner-shadow  relative border border-transparent py-4 px-10 flex h-full flex-col items-center justify-center'>
  
       <div className='flex   flex-col  py-10 my-20 items-start justify-start'>
       <div className="corner top-left"></div>
@@ -58,6 +58,7 @@ const Home = () => {
       )}
      </div>
     </section>
+     </section>
     </div>
   );
 };

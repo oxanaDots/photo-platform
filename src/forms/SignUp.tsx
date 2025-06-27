@@ -7,6 +7,9 @@ import {useForm, SubmitHandler} from 'react-hook-form'
 import '../index.css'
 import InputField from '../components/InputField';
 
+import { doc, setDoc } from "firebase/firestore";
+import { db, auth } from '../firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 
 const SignUp: React.FC = () => {
@@ -17,56 +20,39 @@ const SignUp: React.FC = () => {
       defaultValues: {...formData, password, confirmPassword}})
    const navigate = useNavigate()
    
-   const apiURL = 'http://localhost:5173/signup';
+
 const onSubmit: SubmitHandler<FormData> = async (data )=> {
   setFormData(data)
-  
-try {
-  
+   
+  try{
 
- const response = await axios.post(`${apiURL}/signup`, data)
- console.log('User registered', response.data)
+      const userCredential = await createUserWithEmailAndPassword(
+      auth,
+     data.email,
+     password
+    );
+    const client = userCredential.user;
 
 
-} catch (error){
-  if(axios.isAxiosError(error)){
-    const axiosError = error as AxiosError<{error: string}>
-    if(axiosError.response && axiosError.response.status === 409){
-      const errorMessage = axiosError.response.data.error;
-      console.log(axiosError)
+      await setDoc(doc(db, "enterprises", client.uid), {
+      // this info will be stored on Firestore database
+    email: data.email,
+    firstName: data.firstName,
+    lastName: data.lastName,
+    streetNumber: data.streetNumber,
+    streetName: data.streetName,
+    businessname: data.businessname,
+    postcode: data.postcode,
+    phonenumber: data.phonenumber,
+    createdAt: new Date(),
+    role: 'enterprise'
+    });
 
-      if(errorMessage === 'Email is taken'){
-        setError('root',{
-          type: 'manual',
-         message: errorMessage,
-        })
-
-      } else if(errorMessage === 'Username is already taken'){
-        setError('root',{
-          type: 'manual',
-         message: errorMessage,
-        }) }
-        else if(errorMessage === 'Email and username are taken'){
-        setError('root', {
-        type: 'manual',
-       message: errorMessage
-        })
-        
-      } else{
-        setError('root', {
-          type: 'manual',
-          message: 'Server Error'
-        })
-      }
-
-    }
+    navigate('/signin')
+  } catch(err){
+    console.error(err)
   }
-}finally{
 
-}}
-
-const onError = ()=>{
-  console.log('wrong')
 }
 
   return (
@@ -83,7 +69,7 @@ const onError = ()=>{
            
         </div>
             </section>
-    <form  onSubmit={handleSubmit(onSubmit, onError)} method='POST'>
+    <form  onSubmit={handleSubmit(onSubmit)} method='POST'>
         <div className='form-container'>
             
         <legend className='legend'>Sign Up</legend>

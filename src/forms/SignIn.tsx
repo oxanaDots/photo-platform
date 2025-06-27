@@ -4,6 +4,8 @@ import InputField from '../components/InputField';
 import {useForm, SubmitHandler} from 'react-hook-form'
 import '../index.css'
 import { useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
 
 type SignInFormData={
   email: string,
@@ -20,14 +22,14 @@ const apiURL = 'http://localhost:5173';
 
 const onSubmit: SubmitHandler<SignInFormData> = async (data )=> {
 
-  if (data){
-    navigate('/mydashboard')
-  }
+try{
+ await signInWithEmailAndPassword(auth, data.email, data.password)
+ navigate('/mydashboard')
+} catch (err){
+  console.error(err)
+}
 }
 
-const onError = ()=>{
-  console.log('wrong')
-}
   return (
     <>
   
@@ -40,7 +42,7 @@ const onError = ()=>{
             <button onClick={()=> navigate('/signup')} className='submit-btn-secondary'>Sign Up</button>
         </div>
             </section>
-    <form  onSubmit={handleSubmit(onSubmit, onError)} method='POST'>
+    <form  onSubmit={handleSubmit(onSubmit)} method='POST'>
         <div className='form-container'>
             
         <legend className='legend'>Sign In</legend>

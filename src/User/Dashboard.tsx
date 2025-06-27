@@ -1,12 +1,42 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import Sidebarmenu from './Sidebarmenu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser} from '@fortawesome/free-solid-svg-icons';
 import SummaryItem from './components/SummaryItem';
 import ReminderItem from './components/ReminderItem';
+import { auth, db } from '../firebase';
+import { getDoc, doc } from 'firebase/firestore';
+import InnerNav from '../Navs/InnerNav';
+
+
 function Dashboard() {
+    const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      const user = auth.currentUser;
+      if (user) {
+        const userDoc = await getDoc(doc(db, "enterprises", user.uid));
+        if (userDoc.exists()) {
+          setProfile(userDoc.data());
+        } else {
+          console.log("No user profile found in Firestore!");
+        }
+      }
+    };
+
+    fetchUserProfile();
+  }, []);
+
+   
   return (
-    <section className='flex py-10 justify-center px-5'>
+    <div className='flex flex-col justify-center'>
+    <section className='flex  py-6 items-center justify-center flex-col px-5'>
+
+      <div className='flex self-end justify-center w-full'>
+         <InnerNav/>
+      </div>
     <div className="flex  w-[80%]  py-10 justify-center">
       <Sidebarmenu/>
       <div className='flex w-[100%] flex-col border-t border-l border-primary-dark py-12 px-14'>
@@ -17,7 +47,7 @@ function Dashboard() {
               <FontAwesomeIcon className=' text-2xl text-secondary-light' icon={faUser}/>
             </div>
             <div className=' justify-center grid-col-2  text-left'>
-               <h2 className=''>Name Surname</h2>
+              {profile &&  <h2 className=''>{profile.firstName} {profile.lastName}</h2>}
              <button className='mt-2 text-xs px-4 py-1 rounded-full border border-secondary-dark'>Edit</button>
             </div>
            </section>
@@ -37,7 +67,7 @@ function Dashboard() {
 
            <section className='flex flex-col w-[40vw] gap-4 '>
             <h2>My reminders and updates</h2>
-            <div className='overflow-y-scroll h-[70%] always-scrollbar flex flex-col gap-4 pr-4 '>
+            <div className='overflow-y-scroll h-[76%] always-scrollbar flex flex-col gap-4 pr-4 '>
             <ReminderItem bookingNumber={'#123'} 
             reminderStatus={'Upcoming'}
              buttonTitle={'View Details'}/>
@@ -60,7 +90,9 @@ function Dashboard() {
         </div>
           </div>
           </div>
+        
     </section>
+    </div>
   );
 }
 
