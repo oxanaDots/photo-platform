@@ -15,6 +15,7 @@ type SignInFormData={
 const SignIn: React.FC = () => {
 const [email, setEmail] = useState<string>("")
 const [password, setPassword] = useState<string>("")
+
 const {handleSubmit, register, formState: {errors, isSubmitting}, setError, setValue, getValues} = useForm<SignInFormData>({shouldUseNativeValidation: false, defaultValues: {email, password}})
 const navigate = useNavigate()
 const apiURL = 'http://localhost:5173';
@@ -27,6 +28,14 @@ try{
  navigate('/mydashboard')
 } catch (err){
   console.error(err)
+  if (err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found'){
+    setError('root',{type:'manual', message: 'Invalid email or password. Please try again."'})
+  } else if(err.code === 'auth/invalid-email'){
+    setError('email', {type: 'manual', message: 'Please enter a valid email address.'})
+  } else{
+       setError("root", { type: "manual", message: "An unexpected error occurred. Please try again later." });
+
+  }
 }
 }
 
@@ -46,7 +55,9 @@ try{
         <div className='form-container'>
             
         <legend className='legend'>Sign In</legend>
-
+{errors.root && (
+  <p className="text-red-500 text-xs pb-4">{errors.root.message}</p>
+)}
         <InputField
             name="email"
             placeholder="Email Address"

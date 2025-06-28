@@ -45,7 +45,7 @@ const Home = () => {
         <button className=' font-semibold self-center mt-40  text-secondary-light px-4 text-[0.8rem] py-[0.4rem] rounded-3xl bg-secondary-dark'><Link to='/signup'>Create an Account</Link></button>
         </div>
     </section>
-    <section className='flex flex-col items-center justify-center pt-10 pb-20 bg-opacity-40 bg-ternary-light'>
+    <section className='flex flex-col items-center justify-center pt-6 pb-20  '>
       <h2 className='py-20 font-semibold text-primary-dark text-4xl'>Getting started is really easy</h2>
      
      <div className='flex gap-20  justify-center  py-10 border-y-2 border-secondary-dark'>
