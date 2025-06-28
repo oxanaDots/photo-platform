@@ -28,7 +28,7 @@ try{
  navigate('/mydashboard')
 } catch (err){
   console.error(err)
-  if (err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found'){
+  if (err.code === "auth/invalid-credential"){
     setError('root',{type:'manual', message: 'Invalid email or password. Please try again."'})
   } else if(err.code === 'auth/invalid-email'){
     setError('email', {type: 'manual', message: 'Please enter a valid email address.'})
