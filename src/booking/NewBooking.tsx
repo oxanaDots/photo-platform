@@ -1,14 +1,17 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {useForm, SubmitHandler} from 'react-hook-form';
 import InputField from '../components/InputField';
 import { Controller } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getDoc, doc, addDoc, collection } from 'firebase/firestore';
+import { auth, db } from '../firebase';
 import {  faCamera, faCalendarDays, faClock, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+
 export type NewBookingInputs ={
-    firstName: string,
-    lastName: string,
-    email: string,
+    // firstName: string,
+    // lastName: string,
+    // email: string,
     street_name: string,
     street_number: string,
     postcode: string,
@@ -28,11 +31,27 @@ export type Occasion = typeof OCCASION_OPTIONS[number];
 const NewBooking = () => {
 
 
-  
+    const [profile, setProfile] = useState(null);
+    const user = auth.currentUser;
+ 
+   useEffect(() => {
+     const fetchUserProfile = async () => {
+       if (user) {
+         const userDoc = await getDoc(doc(db, "enterprises", user.uid));
+         if (userDoc.exists()) {
+           setProfile(userDoc.data());
+         } else {
+           console.log("No user profile found in Firestore!");
+         }
+       }
+     };
+ 
+     fetchUserProfile();
+   }, []);
   const[booking, setBooking]= useState<NewBookingInputs>({
-    firstName: '',
-    lastName: '',
-    email: '',
+    // firstName: '',
+    // lastName: '',
+    // email: '',
     street_name: '',
     street_number:'',
     postcode: '',
@@ -50,9 +69,14 @@ const {
   formState: { errors, isSubmitSuccessful },
 } = useForm<NewBookingInputs>();
 
-const onSubmit: SubmitHandler<NewBookingInputs> = data => {
+const onSubmit: SubmitHandler<NewBookingInputs> = async data => {
+  await addDoc(collection(db, 'bookings'),{
+      ...data,
+        clientId: auth.currentUser?.uid || null, // Optional: track who booked
+      createdAt: new Date()
+  })
   setBooking(data);
-  console.log('Booking saved:', data);
+  
 };
 
 return (
@@ -61,8 +85,8 @@ return (
     {isSubmitSuccessful?<div className='flex py-4  w-[25rem]  flex-col  justify-center items-center'>
   <h2 className='text-xl py-5 text-primary-dark font-bold'>
     Thank you for your booking, 
-    <span className='italic '> { booking.firstName}</span>
-    <span className=' text- italic'> {booking.lastName}</span> 
+    <span className='italic '> { profile.firstName}</span>
+    <span className=' text- italic'> {profile.lastName}</span> 
      !</h2>
   <div className='  flex flex-col items-left justify-center text-xs  py-4 rounded-[0.3rem] w-[25rem] px-10 bg-ternary-light'>
    
@@ -105,7 +129,7 @@ return (
     <form className=' flex-col w-[90vw] flex  p-4 justify-center text-center '  onSubmit={handleSubmit(onSubmit)}>
           <legend className="text-xl text-center font-semibold mb-4">Make a Booking</legend>
 
-<div className=' w-100 flex justify-between w-full gap-2 '>
+{/* <div className=' w-100 flex justify-between w-full gap-2 '>
       <InputField
         name="firstName"
         placeholder="First Name"
@@ -135,7 +159,7 @@ return (
           },
         }}
         error={errors.email}
-      />
+      /> */}
 <div className=' w-100 flex justify-between w-full gap-2 '>
       <InputField
         name="street_name"
@@ -240,9 +264,9 @@ return (
                     onClick={() => field.onChange(opt)}
                     className={[
                       
-                      'text-sm cursor-pointer w-32 py-5 text-ternary-medium rounded text-center',
-                      'bg-ternary-light text-gray-800',
-                      isSelected ? 'border-emerald-600 border-2 bg-white text-black' : 'text-primary-medium ',
+                      'text-sm cursor-pointer w-32 py-5 rounded text-center',
+                      'bg-ternary-light',
+                      isSelected ? 'border-emerald-600 border-2 bg-white text-gray-800' : 'text-primary-medium ',
                     ].join(' ')}
                   >
                     {opt}
