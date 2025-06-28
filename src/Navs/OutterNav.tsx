@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const navItems = {'Make a Booking': '/newbooking', 'Sign In': '/signin', 'Sign Up':'/signup'}
+const navItems = {'Make a Booking': '//signin', 'Sign In': '/signin', 'Sign Up':'/signup'}
     
 
 
