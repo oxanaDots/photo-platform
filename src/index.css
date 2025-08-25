@@ -14,14 +14,14 @@
 }
 
 .submit-btn{
-    @apply  w-full py-2 px-2 mt-8 self-center rounded-full bg-violet-950 text-orange-50
+    @apply  w-full py-2 px-2 mt-8 self-center rounded-full bg-primary-dark text-orange-50
 }
 
 .save-btn{
   @apply  py-2 px-4 text-xs mt-4 self-center rounded-full bg-violet-950 text-orange-50
 }
 .submit-btn-secondary{
-    @apply w-auto justify-center py-2 px-9 mt-4 self-center rounded-full border-orange-400 border  text-orange-400
+    @apply w-auto justify-center py-2 px-9 mt-4 self-center rounded-full border-primary-medium border  text-primary-medium
 }
 .legend{
     @apply p-6 font-semibold text-xl 
@@ -35,7 +35,7 @@ form{
 }
 
 .side-img {
-  @apply   grid  col-span-1 z-10 relative bg-violet-950 text-orange-50
+  @apply   grid  col-span-1 z-10 relative bg-primary-dark text-secondary-dark
 
 }
 
@@ -50,7 +50,8 @@ form{
     stroke-linecap: round;
     width: 40px; 
     height: 40px; 
-    border: 3px solid #4a3fd6; /* Color and thickness of the stroke */
+    border: 3px solid;
+    border-color: #0C274D;
   }
   
   /* Specific Corner Positions */

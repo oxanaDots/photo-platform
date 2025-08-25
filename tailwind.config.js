@@ -10,20 +10,20 @@ export default {
       colors: {
         primary: {
           light: 'rgba(46, 16, 101, 0.3)', 
-          medium: colors.zinc[400], 
+          medium: '#CCCFFF', 
 
-          dark: colors.violet[950], 
+          dark: '#062269', 
          
         },
         secondary: {
           light: colors.orange[50], 
-          dark: colors.orange[500], 
+          dark: '#FFD257', 
           medium: colors.zinc[700], 
         },
         ternary:{
           light: colors.zinc[100], 
           medium: colors.zinc[300], 
-          dark: colors.orange[600], 
+          dark: '#F55045', 
          
         }
     },

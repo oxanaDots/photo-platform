@@ -45,14 +45,14 @@ const Home = () => {
         <button className=' font-semibold self-center mt-40  text-secondary-light px-4 text-[0.8rem] py-[0.4rem] rounded-3xl bg-secondary-dark'><Link to='/signup'>Create an Account</Link></button>
         </div>
     </section>
-    <section className='flex flex-col items-center justify-center pt-6 pb-20  '>
+    <section className='flex flex-col items-center justify-center pt-16 pb-20  '>
       <h2 className='py-20 font-semibold text-primary-dark text-4xl'>Getting started is really easy</h2>
      
      <div className='flex gap-20  justify-center  py-10 border-y-2 border-secondary-dark'>
       {steps.map(item => 
       <div className='w-[10%]  flex flex-col items-center gap-5'>
       <h2 className='text-2xl text-primary-dark'>{item.heading}</h2>
-      <div className='text-orange-500 text-2xl text-opacity-80 '>{item.icon}</div>
+      <div className='text-secondary-dark text-2xl text-opacity-80 '>{item.icon}</div>
       <p className='text-center text-sm text-primary-dark'>{item.subheading}</p>
       </div>
       )}

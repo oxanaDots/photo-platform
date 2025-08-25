@@ -72,7 +72,7 @@ const {
 const onSubmit: SubmitHandler<NewBookingInputs> = async data => {
   await addDoc(collection(db, 'bookings'),{
       ...data,
-        clientId: auth.currentUser?.uid || null, // Optional: track who booked
+        clientId: auth.currentUser?.uid || null,
       createdAt: new Date()
   })
   setBooking(data);
