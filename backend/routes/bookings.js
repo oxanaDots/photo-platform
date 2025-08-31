@@ -1,7 +1,8 @@
 import express from 'express'
 import { getMyBookings } from '../constroller.js'
-const router = express.Router()
+import { Router } from 'express'
+const router = Router()
 
-router.get('/search', getMyBookings)
+router.get('/', getMyBookings)
 
 export default router

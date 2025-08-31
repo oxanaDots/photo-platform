@@ -1,6 +1,10 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import bookingsRouter from './routes/bookings.js'
+import cors from 'cors'
+
 const app = express()
+app.use(express.json(), cors({origin:'http://localhost:5173'}))
 const PORT = 3000
 
 // takes two arguments: route name and a handler function that runs whenever the route is accessed 
@@ -13,16 +17,6 @@ const PORT = 3000
 //     res.send(`Welcome, ${username}`)
 // })
 
-const bookings = [
-    {"bookingId": "123", "clientId": "client123"}
-]
-
-app.post('/mybookings', express.json(), (req, res)=>{
-    const {bookingId, clientId} = req.body
-    res.json({
-     message: `Booking ${bookingId} was booked by client ${clientId}`
-    })
-})
 
 
 app.use('/mybookings', bookingsRouter)

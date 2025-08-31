@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Sidebarmenu from '../User/Sidebarmenu'
 import InnerNav from '../Navs/InnerNav';
 import BookingItem from './BookingItem';
 function MyBookings() {
+const [bookings, setBookings] = useState([])
+
+  useEffect(()=>{
+    async function helper(){
+
+      const res = await fetch ("http://localhost:3000/mybookings")
+      const data = await res.json()
+       setBookings(data.data)
+
+    }
+    helper()
+  }, [])
+
+
+  console.log(bookings)
   return (
    <div className='flex flex-col justify-center'>
     <section className='flex  py-6 items-center justify-center flex-col px-5'>
