@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Sidebarmenu from '../User/Sidebarmenu'
 import InnerNav from '../Navs/InnerNav';
 import BookingItem from './BookingItem';
+import { formatDate } from '../utils/formatDate';
+
 function MyBookings() {
 const [bookings, setBookings] = useState([])
 
@@ -16,6 +18,7 @@ const [bookings, setBookings] = useState([])
     helper()
   }, [])
 
+ 
 
   console.log(bookings)
   return (
@@ -28,20 +31,18 @@ const [bookings, setBookings] = useState([])
         <div className="flex  w-[80%]  py-10 ">
           <Sidebarmenu/>
            <div className=" justify-left w-[100%] flex-col gap-6 flex border-t border-l border-primary-dark py-12 px-14">
-            <BookingItem 
+            
+            {bookings.map(item =>(
+           <BookingItem 
             status='Completed' 
-            orderId='#123' 
-            serviceandOcassion='Commercial photography' 
-            address='BR1' 
-            dateAndTime='Augsut 29th, 14:00'
+            orderId={item.appointment_id} 
+            serviceandOcassion={item.service_name}
+            address={`${item.street_name} ${item.street_number}, ${item.postcode}`}
+            dateAndTime={formatDate(item.date_and_time)}
             />
-             <BookingItem 
-            status='Completed' 
-            orderId='#123' 
-            serviceandOcassion='Commercial photography' 
-            address='BR1' 
-            dateAndTime='Augsut 29th, 14:00'
-            />
+            ))}
+           
+           
   </div>
   </div>
   </section>

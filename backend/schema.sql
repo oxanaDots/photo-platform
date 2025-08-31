@@ -11,7 +11,7 @@ CREATE TABLE client (
   PRIMARY KEY (client_id)
 );
 
--- 2) Locations
+
 CREATE TABLE location (
   location_id   BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   street_name   VARCHAR(20) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE location (
   PRIMARY KEY (location_id)
 );
 
--- 3) Services
+
 CREATE TABLE service (
   service_id  VARCHAR(20) NOT NULL,
   hourly_rate INT  NOT NULL,
@@ -29,7 +29,6 @@ CREATE TABLE service (
 );
 
 
--- 4) Artists
 CREATE TABLE artist (
   artist_id    BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   first_name   VARCHAR(20) NOT NULL,
@@ -38,7 +37,7 @@ CREATE TABLE artist (
   PRIMARY KEY (artist_id)
 );
 
--- 5) Appointments
+
 CREATE TABLE appointment (
   appointment_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   client_id      BIGINT UNSIGNED NOT NULL,
@@ -62,7 +61,7 @@ CREATE TABLE appointment (
     ON UPDATE CASCADE ON DELETE SET NULL
 );
 
--- 6) Media bundles
+
 CREATE TABLE media_bundle (
   media_id        BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   appointment_id  BIGINT UNSIGNED NOT NULL UNIQUE,
@@ -117,8 +116,3 @@ CREATE TABLE artist_comments (
 
 
 
-insert into service (service_id, hourly_rate, day_rate) values ('photo_service', 100, 500),
-('video_service', 200, 800),
-('photo_and_video', 500, 1200);
-
-insert into location(street_name, street_number, postcode) values ('Southlands road', 36, 'BR2 9QP');
