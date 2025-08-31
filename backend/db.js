@@ -4,12 +4,12 @@ const app = express();
 app.use(express.json());
 
 export const pool =  mysql.createPool({
-  host: 'database-db.cqz8ceiwks7m.us-east-1.rds.amazonaws.com',
+   host: process.env.AWS_MYSQL_HOST,
+  user: process.env.AWS_MYSQL_USER,
+  password: process.env.AWS_MYSQL_PASSWORD,
   port: 3306,
-  user: 'admin',
-  password: 'NewStrongPass!1',
   waitForConnections: true,
-  database: 'myplatform',
+  database: process.env.AWS_MYSQL_DATABASE,
   connectionLimit: 10,
 })
 
