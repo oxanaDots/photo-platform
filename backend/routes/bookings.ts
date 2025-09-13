@@ -1,5 +1,5 @@
 import express from 'express'
-import { getMyBookings, sendBookingstoDB } from '../constroller'
+import { getMyBookings, sendBookingstoDB } from '../constroller.ts'
 import { Router } from 'express'
 const router = Router()
 

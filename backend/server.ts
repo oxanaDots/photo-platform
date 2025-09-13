@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import express from 'express';
-import bookingsRouter from './routes/bookings'
+import bookingsRouter from './routes/bookings.ts'
 import cors from 'cors'
 
 const app = express()

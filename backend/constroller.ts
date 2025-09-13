@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
-import { ResultSetHeader, RowDataPacket } from 'mysql2';
+import type { Request, Response } from "express";
+import type { ResultSetHeader, RowDataPacket } from 'mysql2';
 
-import { pool } from "./db.js"
+import { pool } from "./db.ts"
 
 const getBookingsQuery = `SELECT
 a.appointment_id,
