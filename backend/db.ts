@@ -11,5 +11,5 @@ export const pool =  mysql.createPool({
   connectionLimit: 10,
 })
 
-
+const newVAr = 'test'
 
