@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import mysql from 'mysql2/promise';
 
+const t = "new"
 export const pool =  mysql.createPool({
   host:process.env.AWS_MYSQL_HOST,
   user:process.env.AWS_MYSQL_USER,
